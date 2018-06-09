@@ -12,9 +12,6 @@
     <artifactId>distributed-dependencies</artifactId>
     <packaging>pom</packaging>
 
-    <!--<name>spring-cloud-ratel-dependencies</name>
-    <description>distributed-dependency</description>-->
-
     <dependencyManagement>
         <dependencies>
             <dependency>
