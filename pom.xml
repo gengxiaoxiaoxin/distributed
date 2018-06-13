@@ -12,6 +12,8 @@
     <modules>
         <module>distributed-dao</module>
         <module>distributed-dependencies</module>
+        <module>distributed-httpclient</module>
+        <module>distributed-swagger</module>
     </modules>
 
     <licenses>
@@ -92,6 +94,37 @@
         </dependencies>
     </dependencyManagement>
 
+    <repositories>
+        <repository>
+            <id>nutz</id>
+            <url>http://jfrog.nutz.cn/artifactory/libs-release</url>
+        </repository>
+        <repository>
+            <id>nutz-snapshots</id>
+            <url>http://jfrog.nutz.cn/artifactory/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nutz-snapshots</id>
+            <url>http://jfrog.nutz.cn/artifactory/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
 
     <build>
         <plugins>
@@ -120,6 +153,19 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.nutz.boot</groupId>
+                <artifactId>nutzboot-maven-plugin</artifactId>
+                <version>${nutzboot.version}</version>
             </plugin>
         </plugins>
     </build>
