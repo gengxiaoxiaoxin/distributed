@@ -15,14 +15,18 @@
  *
  */
 
-package com.github.orange.distributed.swagger;
+package com.github.orange.distributed.swagger.apidoc;
 
 import org.nutz.boot.NbApp;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
+import org.nutz.mvc.annotation.UrlMappingBy;
+import org.nutz.plugins.apidoc.ApidocUrlMapping;
 
 @IocBean
+@Ok("json")
+@UrlMappingBy(ApidocUrlMapping.class)
 public class MainLauncher {
 
 	public static void main(String[] args) {

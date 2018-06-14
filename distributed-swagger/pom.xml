@@ -29,10 +29,17 @@
     <artifactId>distributed-swagger</artifactId>
 
     <dependencies>
+        <!--Swagger-->
         <dependency>
             <groupId>org.nutz</groupId>
             <artifactId>nutzboot-starter-swagger</artifactId>
         </dependency>
+        <!--apidoc-->
+        <dependency>
+            <groupId>org.nutz</groupId>
+            <artifactId>nutz-plugins-apidoc</artifactId>
+        </dependency>
+
         <!--<dependency>
             <groupId>org.nutz</groupId>
             <artifactId>nutzboot-starter</artifactId>

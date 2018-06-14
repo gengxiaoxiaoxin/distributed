@@ -17,38 +17,20 @@
 
 package com.github.orange.distributed.swagger.demo;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import org.nutz.ioc.Ioc;
-import org.nutz.ioc.loader.annotation.Inject;
+import org.nutz.boot.NbApp;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
-import org.nutz.mvc.annotation.POST;
-import org.nutz.mvc.annotation.Param;
 
-@Api(value = "demo")
 @IocBean
-@At("/demo")
-public class HelloSwaggerModel {
+public class MainLauncher {
 
-	@Inject
-	private Ioc ioc;
-
-	@POST
-	@ApiOperation(value = "回显接口", notes = "发我一个字符串,原样回复一个字符串", httpMethod = "POST")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "text", paramType = "query", value = "想发啥就发啥", dataType = "string", required = true) })
-	@At
-	@Ok("raw")
-	public String echo(@Param(value = "text") String text) {
-		return "echo!" + text;
+	public static void main(String[] args) {
+		new NbApp(MainLauncher.class).setArgs(args).setPrintProcDoc(true).run();
 	}
 
 	@Ok("raw")
-	@At("/now")
+	@At("/time/now")
 	public long now() {
 		return System.currentTimeMillis();
 	}

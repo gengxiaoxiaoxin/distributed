@@ -15,42 +15,52 @@
  *
  */
 
-package com.github.orange.distributed.swagger.demo;
+package com.github.orange.distributed.swagger.apidoc;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 import org.nutz.ioc.Ioc;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
-import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.POST;
 import org.nutz.mvc.annotation.Param;
+import org.nutz.plugins.apidoc.annotation.Api;
+import org.nutz.plugins.apidoc.annotation.ApiMatchMode;
+import org.nutz.plugins.apidoc.annotation.ApiParam;
+import org.nutz.plugins.apidoc.annotation.ReturnKey;
 
-@Api(value = "demo")
+import java.util.HashMap;
+import java.util.Map;
+
+@Api(name = "Demo-name测试", match = ApiMatchMode.ONLY, author = "耿鑫", description = "HelloApidocModel-测试描述")
 @IocBean
 @At("/demo")
-public class HelloSwaggerModel {
+public class HelloApidocModel {
 
 	@Inject
 	private Ioc ioc;
 
 	@POST
-	@ApiOperation(value = "回显接口", notes = "发我一个字符串,原样回复一个字符串", httpMethod = "POST")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "text", paramType = "query", value = "想发啥就发啥", dataType = "string", required = true) })
 	@At
-	@Ok("raw")
+	@Api(name = "回显接口1", params = {
+			@ApiParam(name = "text", index = 1, type = "String", description = "echo!String", ignore = false) }, ok = {
+			@ReturnKey(key = "echo!String", description = "echo!+text") })
 	public String echo(@Param(value = "text") String text) {
 		return "echo!" + text;
 	}
 
-	@Ok("raw")
 	@At("/now")
+	@Api(name = "回显接口2", ok = { @ReturnKey(key = "millis", description = "当前系统时间") })
 	public long now() {
 		return System.currentTimeMillis();
+	}
+
+	@At("/sysparam")
+	@Api(name = "回显接口3", ok = { @ReturnKey(key = "map", description = "当前系统参数Map") })
+	public Map systemParam() {
+		Map<String, java.io.Serializable> map = new HashMap<>();
+		map.put("name", "耿鑫的初代机");
+		map.put("life", -1);
+		return map;
 	}
 
 }

@@ -77,6 +77,12 @@
                 <version>${lombok.version}</version>
             </dependency>
 
+            <!--Nutz-Plugin-ApiDoc-->
+            <dependency>
+                <groupId>org.nutz</groupId>
+                <artifactId>nutz-plugins-apidoc</artifactId>
+                <version>1.r.65</version>
+            </dependency>
             <!--Test-->
             <dependency>
                 <groupId>org.nutz</groupId>
