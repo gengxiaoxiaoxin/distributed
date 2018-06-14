@@ -15,26 +15,27 @@
  *
  */
 
-package com.github.orange.distributed.httpclient.nutz.http;
+package com.github.orange.distributed.httpclient.http;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.nutz.http.Http;
 import org.nutz.http.Response;
 import org.nutz.http.Sender;
 import org.nutz.lang.Stopwatch;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class NutzHttpTest {
+public class NutzHttpTest extends Assert {
 
 	@Test
 	public void httpTest() {
@@ -97,4 +98,21 @@ public class NutzHttpTest {
 		Sender.shutdown();
 	}
 
+	@Test
+	public void fileTest() {
+		/*Request req = Request.create("E:/upload/image", Request.METHOD.POST);
+		File f = File.createTempFile("nutz", "data");
+		FileWriter fw = new FileWriter(f);
+		fw.write("abc");
+		fw.flush();
+		fw.close();
+		req.getParams().put("file", f);
+		FilePostSender sender = new FilePostSender(req);*/
+		
+		Map<String, Object> map = new HashMap<>();
+		File file = new File("D:\\images\\26.jpg");
+		map.put("file", file);
+		Response response = Http.upload("localhost:8080/upload", map, null, 10 * 1000);
+		System.out.println(response.getContent());
+	}
 }
