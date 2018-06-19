@@ -14,6 +14,8 @@
         <module>distributed-dependencies</module>
         <module>distributed-httpclient</module>
         <module>distributed-swagger</module>
+        <module>distributed-kafka</module>
+        <module>nutzboot-starter-kafka</module>
     </modules>
 
     <licenses>
@@ -42,7 +44,7 @@
         <java.version>1.8</java.version>
         <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-        <nutzboot.version>2.1.9</nutzboot.version>
+        <nutzboot.version>2.3-SNAPSHOT</nutzboot.version>
         <lombok.version>1.16.14</lombok.version>
     </properties>
 
@@ -75,6 +77,13 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+
+            <!--Kafka-->
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>0.11.0.0</version>
             </dependency>
 
             <!--Nutz-Plugin-ApiDoc-->
